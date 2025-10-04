@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Powered GYG Experience Content Generator</title>
+    <title>AI-Powered GYG Content Generator - Pro</title>
     <style>
         * {
             margin: 0;
@@ -19,7 +19,7 @@
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
@@ -89,7 +89,7 @@
         }
         
         .form-group textarea {
-            min-height: 100px;
+            min-height: 80px;
             resize: vertical;
         }
         
@@ -105,6 +105,30 @@
             display: block;
             margin-top: 5px;
             color: #856404;
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+        
+        .checkbox-item label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
         }
         
         .btn {
@@ -204,7 +228,22 @@
             border-left: 4px solid #f5c6cb;
         }
         
-        @media (max-width: 1024px) {
+        .section-divider {
+            border-top: 2px solid #e0e0e0;
+            margin: 30px 0;
+            padding-top: 20px;
+        }
+        
+        .tip-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 1200px) {
             .content {
                 grid-template-columns: 1fr;
             }
@@ -214,8 +253,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🤖 AI-Powered GYG Content Generator</h1>
-            <p>Transform simple information into compelling travel experiences</p>
+            <h1>🤖 AI-Powered GYG Content Generator Pro</h1>
+            <p>Optimized for GetYourGuide's Algorithm & Audience • Powered by OpenAI</p>
         </div>
         
         <div class="content">
@@ -224,13 +263,13 @@
                 
                 <div class="api-key-section">
                     <label for="apiKey">OpenAI API Key</label>
-                    <input type="password" id="apiKey" placeholder="sk-...">
-                    <small>Your API key is stored locally and never sent anywhere except OpenAI</small>
+                    <input type="password" id="apiKey" placeholder="sk-proj-...">
+                    <small>Get your API key at platform.openai.com/api-keys. Add $5-10 credit for usage.</small>
                 </div>
                 
                 <div class="form-group">
                     <label for="experienceName">Experience Name *</label>
-                    <input type="text" id="experienceName" placeholder="e.g., Colosseum Tour">
+                    <input type="text" id="experienceName" placeholder="e.g., Colosseum Underground Tour">
                 </div>
                 
                 <div class="form-group">
@@ -245,17 +284,99 @@
                 
                 <div class="form-group">
                     <label for="activities">Main Activities/Features *</label>
-                    <textarea id="activities" placeholder="e.g., Skip-the-line access, guided tour, see gladiator arena, underground chambers"></textarea>
+                    <textarea id="activities" placeholder="e.g., Skip-the-line access, guided tour, see gladiator arena, underground chambers, forum access"></textarea>
                 </div>
                 
-                <div class="form-group">
-                    <label for="targetAudience">Target Audience</label>
-                    <input type="text" id="targetAudience" placeholder="e.g., Families, history enthusiasts, photographers">
-                </div>
+                <div class="section-divider"></div>
                 
                 <div class="form-group">
-                    <label for="uniqueFeatures">Unique Selling Points</label>
-                    <textarea id="uniqueFeatures" placeholder="e.g., Expert archaeologist guide, small group size, exclusive access"></textarea>
+                    <label>Does this product have different options/variations?</label>
+                    <div style="display: flex; gap: 20px; margin-top: 10px;">
+                        <div class="checkbox-item">
+                            <input type="radio" id="hasOptionsYes" name="hasOptions" value="yes" onchange="toggleOptionsSection()">
+                            <label for="hasOptionsYes">Yes</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="hasOptionsNo" name="hasOptions" value="no" checked onchange="toggleOptionsSection()">
+                            <label for="hasOptionsNo">No</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="optionsSection" style="display: none;">
+                    <div class="tip-box" style="margin-top: 20px;">
+                        💡 Add different tour options (e.g., Standard vs Private, Morning vs Evening, Small Group vs Large Group)
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="option1Name">Option 1 Name *</label>
+                        <input type="text" id="option1Name" placeholder="e.g., Standard Group Tour">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="option1Details">Option 1 Key Details</label>
+                        <textarea id="option1Details" placeholder="e.g., Small group (max 15), Morning departure, 3 hours duration"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="option2Name">Option 2 Name</label>
+                        <input type="text" id="option2Name" placeholder="e.g., Private Tour">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="option2Details">Option 2 Key Details</label>
+                        <textarea id="option2Details" placeholder="e.g., Private guide, Flexible timing, Personalized experience"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="option3Name">Option 3 Name (Optional)</label>
+                        <input type="text" id="option3Name" placeholder="e.g., VIP Experience">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="option3Details">Option 3 Key Details (Optional)</label>
+                        <textarea id="option3Details" placeholder="e.g., Skip all lines, Private guide, Champagne included"></textarea>
+                    </div>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <div class="form-group">
+                    <label>Target Audience (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aud_general" value="25-34 year olds seeking experiential travel and cultural immersion" checked>
+                            <label for="aud_general">General (25-34)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aud_families" value="families with children">
+                            <label for="aud_families">Families</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aud_couples" value="couples seeking romantic experiences">
+                            <label for="aud_couples">Couples</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aud_solo" value="solo travelers">
+                            <label for="aud_solo">Solo travelers</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aud_history" value="history enthusiasts">
+                            <label for="aud_history">History buffs</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aud_adventure" value="adventure seekers">
+                            <label for="aud_adventure">Adventurers</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aud_photographers" value="photography enthusiasts">
+                            <label for="aud_photographers">Photographers</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="aud_foodies" value="food lovers">
+                            <label for="aud_foodies">Foodies</label>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="form-group">
@@ -265,17 +386,104 @@
                         <option value="professional">Professional & Informative</option>
                         <option value="casual">Casual & Friendly</option>
                         <option value="luxury">Luxury & Exclusive</option>
+                        <option value="cultural">Cultural & Educational</option>
+                        <option value="romantic">Romantic & Intimate</option>
+                        <option value="humorous">Fun & Humorous</option>
+                        <option value="inspirational">Inspirational & Motivating</option>
                     </select>
                 </div>
                 
-                <button class="btn" onclick="generateContent()">✨ Generate AI Content</button>
+                <div class="form-group">
+                    <label for="pricePoint">Price Point</label>
+                    <input type="text" id="pricePoint" placeholder="e.g., €49 per person">
+                </div>
+                
+                <div class="form-group">
+                    <label for="groupSize">Group Size</label>
+                    <input type="text" id="groupSize" placeholder="e.g., Small group (max 15), Private tour available">
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <div class="form-group">
+                    <label>What's Included</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inc_guide" value="Expert guide">
+                            <label for="inc_guide">Expert guide</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inc_skip" value="Skip-the-line access">
+                            <label for="inc_skip">Skip-the-line</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inc_transport" value="Transportation">
+                            <label for="inc_transport">Transportation</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inc_food" value="Food & drinks">
+                            <label for="inc_food">Food & drinks</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inc_entrance" value="Entrance fees">
+                            <label for="inc_entrance">Entrance fees</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inc_pickup" value="Hotel pickup">
+                            <label for="inc_pickup">Hotel pickup</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inc_headset" value="Audio headsets">
+                            <label for="inc_headset">Audio headsets</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inc_photos" value="Professional photos">
+                            <label for="inc_photos">Photos</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>What's NOT Included</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="exc_food" value="Meals">
+                            <label for="exc_food">Meals</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="exc_transport" value="Hotel transfer">
+                            <label for="exc_transport">Hotel transfer</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="exc_tips" value="Gratuities">
+                            <label for="exc_tips">Gratuities</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="exc_personal" value="Personal expenses">
+                            <label for="exc_personal">Personal expenses</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-divider"></div>
+                
+                <div class="form-group">
+                    <label for="uniqueFeatures">Unique Selling Points (USPs)</label>
+                    <textarea id="uniqueFeatures" placeholder="e.g., Exclusive access to restricted areas, Expert archaeologist guide, Small group experience, Private tour option available"></textarea>
+                </div>
+                
+                <div class="tip-box">
+                    💡 <strong>GetYourGuide Pro Tip:</strong> Mention private tour options, exclusive access, and cultural/historical elements to boost rankings and appeal to the 25-34 age demographic!
+                </div>
+                
+                <button class="btn" onclick="generateContent()">✨ Generate Optimized Content</button>
             </div>
             
             <div class="output-section">
                 <h2>🎯 Generated Content</h2>
                 <div id="output">
                     <p style="text-align: center; color: #999; padding: 40px;">
-                        Fill in the details and click "Generate AI Content" to see your results here.
+                        Fill in the details and click "Generate Optimized Content" to see your results here.
                     </p>
                 </div>
             </div>
@@ -285,15 +493,52 @@
     <script>
         let generatedContent = {};
 
+        function toggleOptionsSection() {
+            const hasOptions = document.querySelector('input[name="hasOptions"]:checked').value;
+            const optionsSection = document.getElementById('optionsSection');
+            optionsSection.style.display = hasOptions === 'yes' ? 'block' : 'none';
+        }
+
+        function getCheckedValues(prefix) {
+            const checkboxes = document.querySelectorAll(`input[id^="${prefix}"]:checked`);
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
         async function generateContent() {
             const apiKey = document.getElementById('apiKey').value.trim();
             const experienceName = document.getElementById('experienceName').value.trim();
             const location = document.getElementById('location').value.trim();
             const duration = document.getElementById('duration').value.trim();
             const activities = document.getElementById('activities').value.trim();
-            const targetAudience = document.getElementById('targetAudience').value.trim();
+            const targetAudiences = getCheckedValues('aud_');
             const uniqueFeatures = document.getElementById('uniqueFeatures').value.trim();
             const tone = document.getElementById('tone').value;
+            const pricePoint = document.getElementById('pricePoint').value.trim();
+            const groupSize = document.getElementById('groupSize').value.trim();
+            
+            const included = getCheckedValues('inc_');
+            const excluded = getCheckedValues('exc_');
+            
+            const hasOptions = document.querySelector('input[name="hasOptions"]:checked').value;
+            const options = [];
+            
+            if (hasOptions === 'yes') {
+                const option1Name = document.getElementById('option1Name').value.trim();
+                const option1Details = document.getElementById('option1Details').value.trim();
+                const option2Name = document.getElementById('option2Name').value.trim();
+                const option2Details = document.getElementById('option2Details').value.trim();
+                const option3Name = document.getElementById('option3Name').value.trim();
+                const option3Details = document.getElementById('option3Details').value.trim();
+                
+                if (option1Name) options.push({ name: option1Name, details: option1Details });
+                if (option2Name) options.push({ name: option2Name, details: option2Details });
+                if (option3Name) options.push({ name: option3Name, details: option3Details });
+                
+                if (options.length === 0) {
+                    showError('Please fill in at least Option 1 details if you selected "Yes" for options');
+                    return;
+                }
+            }
 
             if (!apiKey) {
                 showError('Please enter your OpenAI API key');
@@ -309,12 +554,12 @@
             outputDiv.innerHTML = `
                 <div class="loading">
                     <div class="spinner"></div>
-                    <p>AI is crafting your content...</p>
+                    <p>AI is crafting your GetYourGuide-optimized content...</p>
                 </div>
             `;
 
             try {
-                const prompt = createPrompt(experienceName, location, duration, activities, targetAudience, uniqueFeatures, tone);
+                const prompt = createPrompt(experienceName, location, duration, activities, targetAudiences, uniqueFeatures, tone, pricePoint, groupSize, included, excluded, options);
                 
                 const response = await fetch('https://api.openai.com/v1/chat/completions', {
                     method: 'POST',
@@ -329,7 +574,7 @@
                             content: prompt
                         }],
                         temperature: 0.8,
-                        max_tokens: 2500
+                        max_tokens: 3500
                     })
                 });
 
@@ -348,60 +593,129 @@
             }
         }
 
-        function createPrompt(name, location, duration, activities, audience, features, tone) {
+        function createPrompt(name, location, duration, activities, audiences, features, tone, price, groupSize, included, excluded, options) {
             const toneDescriptions = {
                 exciting: "exciting, adventurous, and enthusiastic",
                 professional: "professional, informative, and trustworthy",
                 casual: "casual, friendly, and approachable",
-                luxury: "luxurious, exclusive, and sophisticated"
+                luxury: "luxurious, exclusive, and sophisticated",
+                cultural: "culturally rich, educational, and immersive",
+                romantic: "romantic, intimate, and enchanting",
+                humorous: "fun, humorous, and entertaining",
+                inspirational: "inspirational, motivating, and uplifting"
             };
 
-            return `Create compelling travel experience content for GetYourGuide with a ${toneDescriptions[tone]} tone.
+            const audienceText = audiences.length > 0 ? audiences.join(', ') : '25-34 year olds seeking experiential travel and cultural immersion';
+
+            return `You are an expert GetYourGuide content writer. Create compelling travel experience content optimized for GetYourGuide's algorithm and audience.
+
+CRITICAL GETOURYGUIDE OPTIMIZATION RULES:
+- Target audience: Primarily 25-34 year olds from Europe (Germany, UK, France) and USA
+- Emphasize cultural immersion, historical significance, and convenience
+- Highlight skip-the-line access and time-saving benefits
+- Include FOMO elements (limited availability, high demand)
+- Mention private tour options to boost rankings (higher revenue per booking)
+- Focus on day trips from major cities when relevant
+- Use psychological pricing language
+- Appeal to both male and female travelers with balanced adventure/culture content
 
 Experience Details:
 - Name: ${name}
 - Location: ${location}
 - Duration: ${duration}
 - Activities: ${activities}
-${audience ? `- Target Audience: ${audience}` : ''}
+- Target Audience: ${audienceText}
+- Tone: ${toneDescriptions[tone]}
+${price ? `- Price: ${price}` : ''}
+${groupSize ? `- Group Size: ${groupSize}` : ''}
 ${features ? `- Unique Features: ${features}` : ''}
+${included.length > 0 ? `- What's Included: ${included.join(', ')}` : ''}
+${excluded.length > 0 ? `- What's NOT Included: ${excluded.join(', ')}` : ''}
+
+${options.length > 0 ? `
+PRODUCT OPTIONS:
+This experience has ${options.length} different booking options. For EACH option below, create 3 different title variations and 3 different short descriptions (max 2 sentences each).
+
+${options.map((opt, i) => `
+Option ${i + 1}: ${opt.name}
+Details: ${opt.details || 'Standard experience'}
+`).join('')}
+` : ''}
 
 Generate the following sections in this EXACT format:
 
 TITLE OPTIONS:
-1. [Title option 1]
-2. [Title option 2]
-3. [Title option 3]
+1. [SEO-optimized title with key location/attraction, max 70 characters]
+2. [Benefit-focused title emphasizing skip-the-line or exclusive access]
+3. [Emotionally engaging title that creates FOMO]
 
 SHORT DESCRIPTION:
-[2-3 sentences, 150-200 characters, compelling hook]
+[2-3 sentences, 150-200 characters, compelling hook that highlights the main benefit and creates urgency]
 
 LONG DESCRIPTION:
-[4-5 paragraphs describing the experience, what makes it special, what guests will see/do/learn, sensory details, emotional benefits]
+[5-6 paragraphs describing:
+- Opening hook with emotional appeal
+- What makes this experience special and unique
+- Detailed itinerary or what guests will see/do/learn
+- Cultural and historical significance (important for GYG audience)
+- Sensory details and emotional benefits
+- Why book now / FOMO element
+- Mention of private tour option if applicable]
 
 HIGHLIGHTS:
-- [Highlight 1]
-- [Highlight 2]
-- [Highlight 3]
-- [Highlight 4]
-- [Highlight 5]
-- [Highlight 6]
+- [Key benefit 1 - focus on convenience like skip-the-line]
+- [Unique feature 2 - exclusive access or expert guide]
+- [Cultural/historical element 3]
+- [Experience benefit 4]
+- [Value proposition 5]
+- [Emotional benefit 6]
+
+WHAT'S INCLUDED:
+${included.length > 0 ? included.map(item => `- ${item}`).join('\n') : '- [List included items based on the experience details]'}
+
+WHAT'S NOT INCLUDED:
+${excluded.length > 0 ? excluded.map(item => `- ${item}`).join('\n') : '- [List excluded items to set clear expectations]'}
 
 FAQ:
-Q: [Common question 1]
-A: [Answer]
+Q: [Practical question about booking/timing]
+A: [Clear, helpful answer]
 
-Q: [Common question 2]
-A: [Answer]
+Q: [Question about accessibility or requirements]
+A: [Detailed response]
 
-Q: [Common question 3]
-A: [Answer]
+Q: [Question about what to bring or expect]
+A: [Practical guidance]
 
-Q: [Common question 4]
-A: [Answer]
+Q: [Question about cancellation or refunds]
+A: [Policy information]
 
-Q: [Common question 5]
-A: [Answer]`;
+Q: [Question highlighting a unique feature or benefit]
+A: [Enthusiastic response emphasizing value]
+
+${options.length > 0 ? `
+PRODUCT OPTIONS:
+
+${options.map((opt, i) => `
+OPTION ${i + 1}: ${opt.name}
+
+Title Variations:
+1. [Concise, benefit-focused title]
+2. [Feature-highlighting title]
+3. [Value-emphasizing title]
+
+Description Variations:
+1. [2 sentences max - Focus on main benefit and target audience]
+2. [2 sentences max - Emphasize unique features and value]
+3. [2 sentences max - Create urgency and highlight experience quality]
+`).join('')}
+` : ''}
+
+OPTIMIZATION NOTES:
+[2-3 specific suggestions for:
+- Cover image recommendations (mention yellow, blue, or red color schemes for higher CTR)
+- FOMO tactics to implement
+- Pricing psychology tips
+- How to emphasize cultural/historical elements for the target demographic]`;
         }
 
         function parseAndDisplayContent(content) {
@@ -410,7 +724,11 @@ A: [Answer]`;
                 shortDesc: '',
                 longDesc: '',
                 highlights: [],
-                faqs: []
+                included: [],
+                excluded: [],
+                faqs: [],
+                productOptions: [],
+                optimizationNotes: ''
             };
 
             const titleMatch = content.match(/TITLE OPTIONS?:(.*?)(?=SHORT DESCRIPTION:|$)/s);
@@ -431,7 +749,7 @@ A: [Answer]`;
                 sections.longDesc = longMatch[1].trim();
             }
 
-            const highlightsMatch = content.match(/HIGHLIGHTS?:(.*?)(?=FAQ:|$)/s);
+            const highlightsMatch = content.match(/HIGHLIGHTS?:(.*?)(?=WHAT'S INCLUDED:|$)/s);
             if (highlightsMatch) {
                 const highlights = highlightsMatch[1].match(/[-•]\s*(.+)/g);
                 if (highlights) {
@@ -439,7 +757,23 @@ A: [Answer]`;
                 }
             }
 
-            const faqMatch = content.match(/FAQ:(.*?)$/s);
+            const includedMatch = content.match(/WHAT'S INCLUDED:(.*?)(?=WHAT'S NOT INCLUDED:|$)/s);
+            if (includedMatch) {
+                const included = includedMatch[1].match(/[-•]\s*(.+)/g);
+                if (included) {
+                    sections.included = included.map(h => h.replace(/^[-•]\s*/, '').trim());
+                }
+            }
+
+            const excludedMatch = content.match(/WHAT'S NOT INCLUDED:(.*?)(?=FAQ:|$)/s);
+            if (excludedMatch) {
+                const excluded = excludedMatch[1].match(/[-•]\s*(.+)/g);
+                if (excluded) {
+                    sections.excluded = excluded.map(h => h.replace(/^[-•]\s*/, '').trim());
+                }
+            }
+
+            const faqMatch = content.match(/FAQ:(.*?)(?=PRODUCT OPTIONS:|OPTIMIZATION NOTES:|$)/s);
             if (faqMatch) {
                 const faqText = faqMatch[1];
                 const qaPairs = faqText.split(/Q:/g).filter(q => q.trim());
@@ -450,6 +784,46 @@ A: [Answer]`;
                         answer: parts[1] ? parts[1].trim() : ''
                     };
                 }).filter(qa => qa.question && qa.answer);
+            }
+
+            const optionsMatch = content.match(/PRODUCT OPTIONS:(.*?)(?=OPTIMIZATION NOTES:|$)/s);
+            if (optionsMatch) {
+                const optionsText = optionsMatch[1];
+                const optionBlocks = optionsText.split(/OPTION \d+:/g).filter(b => b.trim());
+                
+                sections.productOptions = optionBlocks.map(block => {
+                    const nameMatch = block.match(/^(.+?)(?=Title Variations:|$)/s);
+                    const titlesMatch = block.match(/Title Variations:(.*?)(?=Description Variations:|$)/s);
+                    const descriptionsMatch = block.match(/Description Variations:(.*?)$/s);
+                    
+                    const titles = [];
+                    const descriptions = [];
+                    
+                    if (titlesMatch) {
+                        const titleLines = titlesMatch[1].match(/\d+\.\s*(.+)/g);
+                        if (titleLines) {
+                            titles.push(...titleLines.map(t => t.replace(/^\d+\.\s*/, '').trim()));
+                        }
+                    }
+                    
+                    if (descriptionsMatch) {
+                        const descLines = descriptionsMatch[1].match(/\d+\.\s*(.+)/g);
+                        if (descLines) {
+                            descriptions.push(...descLines.map(d => d.replace(/^\d+\.\s*/, '').trim()));
+                        }
+                    }
+                    
+                    return {
+                        name: nameMatch ? nameMatch[1].trim() : '',
+                        titles: titles,
+                        descriptions: descriptions
+                    };
+                }).filter(opt => opt.name);
+            }
+
+            const notesMatch = content.match(/OPTIMIZATION NOTES:(.*?)$/s);
+            if (notesMatch) {
+                sections.optimizationNotes = notesMatch[1].trim();
             }
 
             generatedContent = sections;
@@ -463,9 +837,9 @@ A: [Answer]`;
 
             if (sections.titles.length > 0) {
                 html += `<div class="output-card">
-                    <h3>📌 Title Options</h3>
+                    <h3>📌 Title Options (SEO Optimized)</h3>
                     ${sections.titles.map((title, i) => `<p><strong>Option ${i + 1}:</strong> ${title}</p>`).join('')}
-                    <button class="copy-btn" onclick="copyText('${sections.titles.join('\\n').replace(/'/g, "\\'")}')">Copy All</button>
+                    <button class="copy-btn" onclick="copyText(\`${sections.titles.join('\\n').replace(/`/g, '\\`')}\`)">Copy All</button>
                 </div>`;
             }
 
@@ -473,7 +847,7 @@ A: [Answer]`;
                 html += `<div class="output-card">
                     <h3>📝 Short Description</h3>
                     <p>${sections.shortDesc}</p>
-                    <button class="copy-btn" onclick="copyText('${sections.shortDesc.replace(/'/g, "\\'")}')">Copy</button>
+                    <button class="copy-btn" onclick="copyText(\`${sections.shortDesc.replace(/`/g, '\\`')}\`)">Copy</button>
                 </div>`;
             }
 
@@ -481,7 +855,7 @@ A: [Answer]`;
                 html += `<div class="output-card">
                     <h3>📖 Long Description</h3>
                     <p>${sections.longDesc.replace(/\n\n/g, '</p><p>')}</p>
-                    <button class="copy-btn" onclick="copyText('${sections.longDesc.replace(/'/g, "\\'")}')">Copy</button>
+                    <button class="copy-btn" onclick="copyText(\`${sections.longDesc.replace(/`/g, '\\`')}\`)">Copy</button>
                 </div>`;
             }
 
@@ -491,7 +865,27 @@ A: [Answer]`;
                     <ul>
                         ${sections.highlights.map(h => `<li>${h}</li>`).join('')}
                     </ul>
-                    <button class="copy-btn" onclick="copyText('${sections.highlights.join('\\n').replace(/'/g, "\\'")}')">Copy</button>
+                    <button class="copy-btn" onclick="copyText(\`${sections.highlights.join('\\n').replace(/`/g, '\\`')}\`)">Copy</button>
+                </div>`;
+            }
+
+            if (sections.included.length > 0) {
+                html += `<div class="output-card">
+                    <h3>✅ What's Included</h3>
+                    <ul>
+                        ${sections.included.map(h => `<li>${h}</li>`).join('')}
+                    </ul>
+                    <button class="copy-btn" onclick="copyText(\`${sections.included.join('\\n').replace(/`/g, '\\`')}\`)">Copy</button>
+                </div>`;
+            }
+
+            if (sections.excluded.length > 0) {
+                html += `<div class="output-card">
+                    <h3>❌ What's NOT Included</h3>
+                    <ul>
+                        ${sections.excluded.map(h => `<li>${h}</li>`).join('')}
+                    </ul>
+                    <button class="copy-btn" onclick="copyText(\`${sections.excluded.join('\\n').replace(/`/g, '\\`')}\`)">Copy</button>
                 </div>`;
             }
 
@@ -503,7 +897,30 @@ A: [Answer]`;
                         <p>A: ${faq.answer}</p>
                         <br>
                     `).join('')}
-                    <button class="copy-btn" onclick="copyText('${sections.faqs.map(f => `Q: ${f.question}\\nA: ${f.answer}`).join('\\n\\n').replace(/'/g, "\\'")}')">Copy All</button>
+                    <button class="copy-btn" onclick="copyText(\`${sections.faqs.map(f => `Q: ${f.question}\\nA: ${f.answer}`).join('\\n\\n').replace(/`/g, '\\`')}\`)">Copy All</button>
+                </div>`;
+            }
+
+            if (sections.productOptions.length > 0) {
+                sections.productOptions.forEach((option, idx) => {
+                    html += `<div class="output-card" style="border-left-color: #28a745;">
+                        <h3>🎫 Option ${idx + 1}: ${option.name}</h3>
+                        
+                        <h4 style="color: #28a745; margin-top: 15px; margin-bottom: 10px;">Title Variations:</h4>
+                        ${option.titles.map((title, i) => `<p><strong>Title ${i + 1}:</strong> ${title}</p>`).join('')}
+                        <button class="copy-btn" onclick="copyText(\`${option.titles.join('\\n').replace(/`/g, '\\`')}\`)">Copy Titles</button>
+                        
+                        <h4 style="color: #28a745; margin-top: 15px; margin-bottom: 10px;">Description Variations:</h4>
+                        ${option.descriptions.map((desc, i) => `<p><strong>Description ${i + 1}:</strong> ${desc}</p>`).join('')}
+                        <button class="copy-btn" onclick="copyText(\`${option.descriptions.join('\\n\\n').replace(/`/g, '\\`')}\`)">Copy Descriptions</button>
+                    </div>`;
+                });
+            }
+
+            if (sections.optimizationNotes) {
+                html += `<div class="output-card" style="border-left-color: #ffc107;">
+                    <h3>💡 GetYourGuide Optimization Tips</h3>
+                    <p>${sections.optimizationNotes.replace(/\n/g, '<br>')}</p>
                 </div>`;
             }
 
@@ -517,13 +934,13 @@ A: [Answer]`;
 
         function copyText(text) {
             const textarea = document.createElement('textarea');
-            textarea.value = text.replace(/\\n/g, '\n').replace(/\\'/g, "'");
+            textarea.value = text.replace(/\\n/g, '\n').replace(/\\`/g, '`');
             document.body.appendChild(textarea);
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
             
-            alert('Copied to clipboard!');
+            alert('✅ Copied to clipboard!');
         }
     </script>
 </body>
